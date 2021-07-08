@@ -1,5 +1,7 @@
 import './App.css';
-import ExpenseItem from './component/ExpenseItem';
+import Expenses from './component/expenses/Expenses';
+import NewExpense from './component/NewExpense/NewExpense';
+import ExpensesFilter from './component/ExpensesFilter/ExpensesFilter';
 
 function App() {
   const expenses = [
@@ -24,29 +26,21 @@ function App() {
     },
   ];
 
+  const saveExpenseData = (enterExpenseData) => {
+    const expenseData = {
+      ...enterExpenseData,
+      id: Math.random().toString(),
+    };
+    console.log(expenseData);
+    const newExpenses = [...expenses, expenseData];
+    console.log(newExpenses);
+  };
+
   return (
     <div className='App'>
-      <h1>Hello</h1>
-      <ExpenseItem
-        title={expenses[0].title}
-        amount={expenses[0].amount}
-        date={expenses[0].date}
-      />
-      <ExpenseItem
-        title={expenses[1].title}
-        amount={expenses[1].amount}
-        date={expenses[1].date}
-      />
-      <ExpenseItem
-        title={expenses[1].title}
-        amount={expenses[2].amount}
-        date={expenses[2].date}
-      />
-      <ExpenseItem
-        title={expenses[3].title}
-        amount={expenses[3].amount}
-        date={expenses[3].date}
-      />
+      <NewExpense onSaveExpensesData={saveExpenseData} />
+      <ExpensesFilter />
+      <Expenses expenses={expenses} />
     </div>
   );
 }

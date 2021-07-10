@@ -1,7 +1,6 @@
 import './App.css';
 import Expenses from './component/expenses/Expenses';
 import NewExpense from './component/NewExpense/NewExpense';
-import ExpensesFilter from './component/ExpensesFilter/ExpensesFilter';
 
 function App() {
   const expenses = [
@@ -39,7 +38,7 @@ function App() {
   return (
     <div className='App'>
       <NewExpense onSaveExpensesData={saveExpenseData} />
-      <ExpensesFilter />
+
       <Expenses expenses={expenses} />
     </div>
   );

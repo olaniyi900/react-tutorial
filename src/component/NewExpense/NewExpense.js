@@ -10,6 +10,7 @@ const NewExpense = ({ onSaveExpensesData }) => {
   //   };
   //   console.log(expenseData);
   // };
+
   return (
     <div className='new-expense'>
       <ExpenseForm onSaveExpensesData={onSaveExpensesData} />

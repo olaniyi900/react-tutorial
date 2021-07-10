@@ -7,7 +7,9 @@ const ExpenseForm = ({ onSaveExpensesData }) => {
   const [enterDate, setEnterDate] = useState('');
 
   const titleHandler = (event) => {
-    setEnterTitle(event.target.value);
+    setEnterTitle((prevState) => {
+      return event.target.value;
+    });
   };
 
   const amountHandler = (event) => {
@@ -29,7 +31,9 @@ const ExpenseForm = ({ onSaveExpensesData }) => {
       amount: enterAmount,
       date: new Date(enterDate),
     };
+
     onSaveExpensesData(data);
+
     setEnterAmount('');
     setEnterDate('');
     setEnterTitle('');

@@ -15,19 +15,22 @@ function Expenses({ expenses }) {
     return expense.date.getFullYear().toString() === year;
   });
 
+  let expensesOutput = <p style={{ color: 'white' }}>There is no expenses</p>;
+  if (filterExpenses.length > 0) {
+    expensesOutput = filterExpenses.map((expense) => (
+      <ExpenseItem
+        key={expense.id}
+        title={expense.title}
+        amount={expense.amount}
+        date={expense.date}
+      />
+    ));
+  }
+
   return (
     <div>
       <ExpensesFilter year={year} sendYear={sendYear} />
-      <Card className='expenses'>
-        {filterExpenses.map((expense) => (
-          <ExpenseItem
-            key={expense.id}
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-          />
-        ))}
-      </Card>
+      <Card className='expenses'>{expensesOutput}</Card>
     </div>
   );
 }

@@ -5,6 +5,7 @@ const ExpenseForm = ({ onSaveExpensesData }) => {
   const [enterTitle, setEnterTitle] = useState('');
   const [enterAmount, setEnterAmount] = useState('');
   const [enterDate, setEnterDate] = useState('');
+  const [showForm, setShowForm] = useState(false);
 
   const titleHandler = (event) => {
     setEnterTitle((prevState) => {
@@ -38,41 +39,64 @@ const ExpenseForm = ({ onSaveExpensesData }) => {
     setEnterDate('');
     setEnterTitle('');
   };
+
+  const showFormHadler = () => {
+    setShowForm(true);
+  };
+  const hideFormHandler = () => {
+    setShowForm(false);
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <div className='new-expense__controls'>
-        <div className='new-expense__control'>
-          <label htmlFor=''>Title</label>
-          <input type='text' value={enterTitle} onChange={titleHandler} />
-        </div>
+    <div>
+      {showForm ? (
+        <form onSubmit={handleSubmit}>
+          <div className='new-expense__controls'>
+            <div className='new-expense__control'>
+              <label htmlFor=''>Title</label>
+              <input type='text' value={enterTitle} onChange={titleHandler} />
+            </div>
 
-        <div className='new-expense__control'>
-          <label htmlFor=''>Amount</label>
-          <input
-            type='number'
-            min='0.01'
-            step='0.01'
-            value={enterAmount}
-            onChange={amountHandler}
-          />
-        </div>
+            <div className='new-expense__control'>
+              <label htmlFor=''>Amount</label>
+              <input
+                type='number'
+                min='0.01'
+                step='0.01'
+                value={enterAmount}
+                onChange={amountHandler}
+              />
+            </div>
 
-        <div className='new-expense__control'>
-          <label htmlFor=''>Title</label>
-          <input
-            type='date'
-            min='2019-01-01'
-            max='2022-12-31'
-            value={enterDate}
-            onChange={dateHandler}
-          />
-        </div>
-      </div>
+            <div className='new-expense__control'>
+              <label htmlFor=''>Title</label>
+              <input
+                type='date'
+                min='2019-01-01'
+                max='2022-12-31'
+                value={enterDate}
+                onChange={dateHandler}
+              />
+            </div>
+          </div>
 
-      <div className='new-expense__actions'>
-        <button type='submit'>Add Expenses</button>
-      </div>
-    </form>
+          <div className='new-expense__actions'>
+            <button type='button' onClick={hideFormHandler}>
+              Cancel
+            </button>
+          </div>
+          <div className='new-expense__actions'>
+            <button type='submit'>Add Expenses</button>
+          </div>
+        </form>
+      ) : (
+        <div className='new-expense__actions'>
+          <button type='button' onClick={showFormHadler}>
+            Add Expenses
+          </button>
+        </div>
+      )}
+    </div>
   );
 };
 

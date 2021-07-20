@@ -8,21 +8,15 @@ const ExpenseForm = ({ onSaveExpensesData }) => {
   const [showForm, setShowForm] = useState(false);
 
   const titleHandler = (event) => {
-    setEnterTitle((prevState) => {
-      return event.target.value;
-    });
+    setEnterTitle(event.target.value);
   };
 
   const amountHandler = (event) => {
-    setEnterAmount((prevState) => {
-      return event.target.value;
-    });
+    setEnterAmount(event.target.value);
   };
 
   const dateHandler = (event) => {
-    setEnterDate((prevState) => {
-      return event.target.value;
-    });
+    setEnterDate(event.target.value);
   };
 
   const handleSubmit = (event) => {
